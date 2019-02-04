@@ -662,14 +662,7 @@ if (!$debug) {
 <head>
 <?php html_header_show();?>
 <link rel=stylesheet href="<?php echo $css_header;?>" type="text/css">
-<style type="text/css">
- body       { font-family:sans-serif; font-size:8pt; font-weight:normal }
- .dehead    { color:#000000; font-family:sans-serif; font-size:9pt; font-weight:bold }
- .olddetail { color:#000000; font-family:sans-serif; font-size:9pt; font-weight:normal }
- .newdetail { color:#00dd00; font-family:sans-serif; font-size:9pt; font-weight:normal }
- .errdetail { color:#dd0000; font-family:sans-serif; font-size:9pt; font-weight:normal }
- .infdetail { color:#0000ff; font-family:sans-serif; font-size:9pt; font-weight:normal }
-</style>
+
 <title><?php echo xlt('EOB Posting - Electronic Remittances')?></title>
 </head>
 <body leftmargin='0' topmargin='0' marginwidth='0' marginheight='0'>
