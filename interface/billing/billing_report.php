@@ -57,7 +57,7 @@ if (isset($_POST['mode'])) {
         $results = $db->Execute($sql);
         $billings = array();
         if ($results->RecordCount() == 0) {
-            echo "<fieldset id='error_info' style='border:1px solid #ff5d5a !Important; background-color: #ff5d5a !Important; color: #fff ! Important; font-weight: bold; font-family:sans-serif; border-radius:5px; padding:20px 5px !Important;'>";
+            echo "<fieldset id='error_info'>";
             echo xlt("No Bills Found to Include in OFX Export") . "<br>";
             echo "</fieldset>";
         } else {
@@ -373,50 +373,7 @@ $partners = $x->_utility_array($x->x12_partner_factory());
 <!-- Criteria Section common javascript page-->
 <!-- =============Included for Insurance ajax criteria==== -->
 <?php require_once "{$GLOBALS['srcdir']}/ajax/payment_ajax_jav.inc.php"; ?>
-<style>
-    #ajax_div_insurance {
-        position: absolute;
-        z-index: 10;
-        background-color: #FBFDD0;
-        border: 1px solid #ccc;
-        padding: 10px;
-    }
-    button[type="submit"].subbtn-warning {
-        background: #ec971f !important;
-        color: black !important;
-    }
-    button[type="submit"].subbtn-warning:hover {
-        background: #da8104 !important;
-        color: #fff !important;
-    }
-    @media only screen and (max-width: 1024px) {
-        [class*="col-"] {
-            width: 100%;
-            text-align: left !Important;
-        }
-    }
-    .table {
-        margin: auto;
-    }
-    @media (min-width: 992px) {
-        .modal-lg {
-            width: 1000px !Important;
-        }
-    }
-    .table th, .table td {
-        border-top: none !important;
-    }
-    .form-control {
-        font-family: "FontAwesome"
-    }
-    ul > li {
-        line-height: 1.86em;
-    }
-    a, a:visited, a:hover {
-        text-decoration: none;
-        color: #000000;
-    }
-</style>
+
 <script>
     document.onclick = TakeActionOnHide;
 </script>
@@ -1027,14 +984,14 @@ $oemr_ui = new OemrUI($arrOeUiSettings);
                             $divnos = $divnos + 1;
                             $lhtml .= "&nbsp;&nbsp;&nbsp;<a onclick='divtoggle(" . attr_js("spanid_".$divnos) . "," . attr_js("divid_".$divnos) . ");' class='small' id='aid_" . attr($divnos) . "' href=\"JavaScript:void(0);" . "\">(<span id=spanid_" . attr($divnos) . " class=\"indicator\">" . xlt('Expand') . '</span>)<br></a>';
                             if ($GLOBALS['notes_to_display_in_Billing'] == 2 || $GLOBALS['notes_to_display_in_Billing'] == 3) {
-                                $lhtml .= '<span style="margin-left: 20px; font-weight: bold; color: red">' . text($billing_note) . '</span>';
+                                $lhtml .= '<span>' . text($billing_note) . '</span>';
                             }
 
                             if ($iter['id']) {
                                 $lcount += 2;
                                 $lhtml .= "<br />\n";
                                 $lhtml .= "&nbsp;<span class='form-group'>" . xlt('Bill') . ": ";
-                                $lhtml .= "<select name='claims[" . attr($this_encounter_id) . "][payer]' onchange='onNewPayer(event)' style='background-color:" . attr($bgcolor) . "'>";
+                                $lhtml .= "<select name='claims[" . attr($this_encounter_id) . "][payer]' onchange='onNewPayer(event)'. attr($bgcolor) . "'>";
 
                                 $query = "SELECT id.provider AS id, id.type, id.date, " .
                                 "ic.x12_default_partner_id AS ic_x12id, ic.name AS provider " .
@@ -1078,7 +1035,7 @@ $oemr_ui = new OemrUI($arrOeUiSettings);
                                 $lhtml .= "<option value='-1'>" . xlt("Unassigned") . "</option>\n";
                                 $lhtml .= "</select>&nbsp;&nbsp;\n";
                                 $lhtml .= "&nbsp;<span class='form-group'>X12: ";
-                                $lhtml .= "<select id='partners' name='claims[" . attr($this_encounter_id) . "][partner]' style='margin-top:5px; background-color:" . attr($bgcolor) . "'>";
+                                $lhtml .= "<select id='partners' name='claims[" . attr($this_encounter_id) . "][partner]' . attr($bgcolor) . "'>";
                                 $lhtml .= "<option value='-1' label='Unassigned'>" . xlt("Partner not configured") . "</option>\n";
                                 foreach ($partners as $xid => $xname) {
                                     if (empty(trim($xname))) {
@@ -1094,9 +1051,9 @@ $oemr_ui = new OemrUI($arrOeUiSettings);
                                 $DivPut = 'yes';
 
                                 if ($GLOBALS['notes_to_display_in_Billing'] == 1 || $GLOBALS['notes_to_display_in_Billing'] == 3) {
-                                    $lhtml .= "<br><span style='margin-left: 20px; font-weight: bold; color: green'>" . text($enc_billing_note) . "</span>";
+                                    $lhtml .= "<br><span>" . text($enc_billing_note) . "</span>";
                                 }
-                                $lhtml .= "<br>\n&nbsp;<div id='divid_" . attr($divnos) . "' style='display:none'>" . text(oeFormatShortDate(substr($iter['date'], 0, 10))) . text(substr($iter['date'], 10, 6)) . " " . xlt("Encounter was coded");
+                                $lhtml .= "<br>\n&nbsp;<div id='divid_" . attr($divnos) . "'>" . text(oeFormatShortDate(substr($iter['date'], 0, 10))) . text(substr($iter['date'], 10, 6)) . " " . xlt("Encounter was coded");
 
                                 $query = "SELECT * FROM claims WHERE patient_id = ? AND encounter_id = ? ORDER BY version";
                                 $cres = sqlStatement(
@@ -1226,26 +1183,26 @@ $oemr_ui = new OemrUI($arrOeUiSettings);
                             if ($iter['modifier']) {
                                 $rhtml .= ":" . text($iter['modifier']);
                             }
-                            $rhtml .= "</span><span style='font-size:8pt;'>$justify</span></td>\n";
+                            $rhtml .= "</span><span>$justify</span></td>\n";
 
-                            $rhtml .= '<td align="right"><span style="font-size:8pt;">&nbsp;&nbsp;&nbsp;';
+                            $rhtml .= '<td align="right">&nbsp;&nbsp;&nbsp;';
                             if ($iter['id'] && $iter['fee'] > 0) {
                                 $rhtml .= text(oeFormatMoney($iter['fee']));
                             }
                             $rhtml .= "</span></td>\n";
-                            $rhtml .= '<td><span style="font-size:8pt;">&nbsp;&nbsp;&nbsp;';
+                            $rhtml .= '<td>&nbsp;&nbsp;&nbsp;';
                             if ($iter['id']) {
                                 $rhtml .= getProviderName(empty($iter['provider_id']) ? text($iter['enc_provider_id']) : text($iter['provider_id']));
                             }
                             $rhtml .= "</span></td>\n";
-                            $rhtml .= '<td><span style="font-size:8pt;">&nbsp;&nbsp;&nbsp;';
+                            $rhtml .= '<td>&nbsp;&nbsp;&nbsp;';
                             if ($GLOBALS['display_units_in_billing'] != 0) {
                                 if ($iter['id']) {
                                     $rhtml .= xlt("Units") . ":" . text($iter{"units"});
                                 }
                             }
                             $rhtml .= "</span></td>\n";
-                            $rhtml .= '<td width=100>&nbsp;&nbsp;&nbsp;<span style="font-size:8pt;">';
+                            $rhtml .= '<td width=100>&nbsp;&nbsp;&nbsp;';
                             if ($iter['id']) {
                                 $rhtml .= text(oeFormatSDFT(strtotime($iter{"date"})));
                             }
@@ -1294,14 +1251,14 @@ $oemr_ui = new OemrUI($arrOeUiSettings);
                                         $rhtml2 .= "<td width='50'>";
                                         $rhtml2 .= "<span class='text'>" . xlt('COPAY') . ": </span>";
                                         $rhtml2 .= "</td>\n";
-                                        $rhtml2 .= "<td><span class='text'>" . text(oeFormatMoney($PatientPay)) . "</span><span style='font-size:8pt;'>&nbsp;</span></td>\n";
-                                        $rhtml2 .= '<td align="right"><span style="font-size:8pt;">&nbsp;&nbsp;&nbsp;';
+                                        $rhtml2 .= "<td><span class='text'>" . text(oeFormatMoney($PatientPay)) . "</span>&nbsp;</td>\n";
+                                        $rhtml2 .= '<td align="right"><span>&nbsp;&nbsp;&nbsp;';
                                         $rhtml2 .= "</span></td>\n";
-                                        $rhtml2 .= '<td><span style="font-size:8pt;">&nbsp;&nbsp;&nbsp;';
+                                        $rhtml2 .= '<td><span>&nbsp;&nbsp;&nbsp;';
                                         $rhtml2 .= "</span></td>\n";
-                                        $rhtml2 .= '<td><span style="font-size:8pt;">&nbsp;&nbsp;&nbsp;';
+                                        $rhtml2 .= '<td><span>&nbsp;&nbsp;&nbsp;';
                                         $rhtml2 .= "</span></td>\n";
-                                        $rhtml2 .= '<td width=100>&nbsp;&nbsp;&nbsp;<span style="font-size:8pt;">';
+                                        $rhtml2 .= '<td width=100>&nbsp;&nbsp;&nbsp;<span>';
                                         $rhtml2 .= text(oeFormatSDFT(strtotime($date)));
                                         $rhtml2 .= "</span></td>\n";
                                         if ($iter['id'] && $iter['authorized'] != 1) {
