@@ -16,11 +16,11 @@ if (sqlNumRows($res)>0) {
     ?>
     <table class="class1">
         <tr class="header">
-    <th><?php echo htmlspecialchars(xlt('Title'), ENT_NOQUOTES); ?></th>
-    <th><?php echo htmlspecialchars(xlt('Reported Date'), ENT_NOQUOTES); ?></th>
-    <th><?php echo htmlspecialchars(xlt('Start Date'), ENT_NOQUOTES); ?></th>
-    <th><?php echo htmlspecialchars(xlt('End Date'), ENT_NOQUOTES); ?></th>
-    <th><?php echo htmlspecialchars(xlt('Referrer'), ENT_NOQUOTES); ?></th>
+    <th><?php echo xlt('Title'); ?></th>
+    <th><?php echo xlt('Reported Date'); ?></th>
+    <th><?php echo xlt('Start Date'); ?></th>
+    <th><?php echo xlt('End Date'); ?></th>
+    <th><?php echo xlt('Referrer'); ?></th>
         </tr>
     <?php
     $even=false;
@@ -44,6 +44,6 @@ if (sqlNumRows($res)>0) {
 
     echo "</table>";
 } else {
-    echo htmlspecialchars(xlt("No Results"), ENT_NOQUOTES);
+    echo xlt("No Results");
 }
 ?>
