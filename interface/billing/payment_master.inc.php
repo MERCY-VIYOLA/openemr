@@ -166,13 +166,13 @@ if (($screen=='new_payment' && $payment_id*1==0) || ($screen=='edit_payment' && 
                             }
                             ?>
                             <input type="text" name="check_number" <?php echo $CheckDisplay;?>"  autocomplete="off"  class="form-control" value="<?php echo attr($CheckNumber);?>"  onKeyUp="ConvertToUpperCase(this)"  id="check_number"  class="form-control "   />
-                            <div  id="div_check_number" class="text"  style="border:1px solid black; width:140px;<?php echo $CheckDivDisplay;?>">&nbsp;</div>
+                            <div  id="div_check_number" class="text" "<?php echo $CheckDivDisplay;?>">&nbsp;</div>
                         </div>
                     </div>
                     <div class="col-xs-12 oe-custom-line">
                         <div class="col-xs-3">
                             <label class="control-label" for="payment_method"><?php echo xlt('Payment Amount'); ?>:</label>
-                            <input   type="text" name="payment_amount"   autocomplete="off"  id="payment_amount"  onchange="ValidateNumeric(this);<?php echo $screen=='new_payment'?'FillUnappliedAmount();':'FillAmount();';?>"  value="<?php echo ($screen=='new_payment') ? attr('0.00') : attr($PayTotal);?>"  style="text-align:right"    class="form-control"   /></td>
+                            <input   type="text" name="payment_amount"   autocomplete="off"  id="payment_amount"  onchange="ValidateNumeric(this);<?php echo $screen=='new_payment'?'FillUnappliedAmount();':'FillAmount();';?>"  value="<?php echo ($screen=='new_payment') ? attr('0.00') : attr($PayTotal);?>"  class="form-control"   /></td>
                         </div>
                         <div class="col-xs-3">
                             <label class="control-label" for="type_name"><?php echo xlt('Paying Entity'); ?>:</label>
@@ -216,7 +216,7 @@ if (($screen=='new_payment' && $payment_id*1==0) || ($screen=='edit_payment' && 
                             <div id='ajax_div_insurance_section'>
                                 <div id='ajax_div_insurance_error'>
                                 </div>
-                                <div id="ajax_div_insurance" style="display:none;"></div>
+                                <div id="ajax_div_insurance"></div>
                             </div>
                         </div>
                         <div class="col-xs-3">
@@ -328,7 +328,7 @@ if ($screen=='new_payment' && $payment_id*1>0) {//After saving from the New Paym
                         </div>
                         <div class="forms col-xs-3">
                             <label class="control-label" for="TdUnappliedAmount"><?php echo xlt('Undistributed'); ?>:</label>
-                            <div  id="TdUnappliedAmount" class="form-control"  style="background-color:#EC7676;"><?php echo ($UndistributedAmount*1==0)? attr("0.00") : attr(number_format($UndistributedAmount, 2, '.', ','));?></div>
+                            <div  id="TdUnappliedAmount" class="form-control"><?php echo ($UndistributedAmount*1==0)? attr("0.00") : attr(number_format($UndistributedAmount, 2, '.', ','));?></div>
                             <input name="HidUnappliedAmount" id="HidUnappliedAmount"  value="<?php echo ($UndistributedAmount*1==0)? attr("0.00") : attr(number_format($UndistributedAmount, 2, '.', ','));?>" type="hidden"/>
                             <input name="HidUnpostedAmount" id="HidUnpostedAmount"  value="<?php echo attr($UndistributedAmount); ?>" type="hidden"/>
                             <input name="HidCurrentPostedAmount" id="HidCurrentPostedAmount"  value="" type="hidden"/>
